@@ -24,22 +24,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button100"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button101"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button102"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
@@ -54,22 +48,16 @@
             android:onClick="onClickBoard1">
 
             <Button
-                android:id="@+id/button110"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button111"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button112"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
@@ -83,22 +71,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button120"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button121"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
 
             <Button
-                android:id="@+id/button122"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard1"/>
@@ -123,22 +105,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button200"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button201"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button202"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
@@ -153,22 +129,16 @@
             android:onClick="onClickBoard2">
 
             <Button
-                android:id="@+id/button210"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button211"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button212"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
@@ -182,27 +152,27 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button220"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button221"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
             <Button
-                android:id="@+id/button222"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickBoard2"/>
 
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_games"
+        android:onClick="onClickResetGames"/>
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.sigmasoftware.akucherenko.tictactoe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock.sleep
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var listOfViewBoard1: MutableList<Button>
     private lateinit var listOfViewBoard2: MutableList<Button>
+    private lateinit var board1: ViewGroup
+    private lateinit var board2: ViewGroup
+    private var runingOnBoard1 = false
+    private var runingOnBoard2 = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val board1: LinearLayout = binding.board1
-        val board2: LinearLayout = binding.board2
+        board1 = binding.board1
+        board2 = binding.board2
 
         listOfViewBoard1 = createListOfView(board1)
         listOfViewBoard2 = createListOfView(board2)
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             if (vg is Button) {
+                vg.text = ""
                 localList += vg
             }
         }
@@ -46,7 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickBoard1(view: android.view.View) {
         val button: Button = view as Button
-        if (button.text.toString() == "X" || button.text.toString() == "O") return
+        if (button.text.toString() == "X" || button.text.toString() == "O" || runingOnBoard1) return
+        runingOnBoard1 = true
         button.text = "X"
         listOfViewBoard1.removeAt(listOfViewBoard1.indexOf(button))
         if (listOfViewBoard1.size == 0) return
@@ -56,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) { machineStep() }
             button.text = "O"
             listOfViewBoard1.removeAt(listOfViewBoard1.indexOf(button))
+            runingOnBoard1 = false
         }
     }
 
@@ -66,7 +74,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickBoard2(view: android.view.View) {
         val button: Button = view as Button
-        if (button.text.toString() == "X" || button.text.toString() == "O") return
+        if (button.text.toString() == "X" || button.text.toString() == "O" || runingOnBoard2) return
+        runingOnBoard2 = true
         button.text = "X"
         listOfViewBoard2.removeAt(listOfViewBoard2.indexOf(button))
         if (listOfViewBoard2.size == 0) return
@@ -76,6 +85,18 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) { machineStep() }
             button.text = "O"
             listOfViewBoard2.removeAt(listOfViewBoard2.indexOf(button))
+            runingOnBoard2 = false
         }
+    }
+
+    fun onClickResetGames(view: android.view.View) {
+        GlobalScope.launch(Dispatchers.Main) {
+            while (runingOnBoard2 || runingOnBoard1) {
+                delay(10)
+            }
+            listOfViewBoard1 = createListOfView(board1)
+            listOfViewBoard2 = createListOfView(board2)
+        }
+
     }
 }
