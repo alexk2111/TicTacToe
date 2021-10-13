@@ -15,17 +15,20 @@ private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listOfViewBoard1: MutableList<Button>
+    private lateinit var listOfViewBoard2: MutableList<Button>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        val lay: LinearLayout = binding.board1 // findViewById(R.id.board1)
+        val board1: LinearLayout = binding.board1
+        val board2: LinearLayout = binding.board2
 
-        listOfViewBoard1 = createListOfView(lay)
+        listOfViewBoard1 = createListOfView(board1)
+        listOfViewBoard2 = createListOfView(board2)
+
     }
 
     private fun createListOfView(vg: View): MutableList<Button> {
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         return localList
     }
 
-    fun onClickPole1(view: android.view.View) {
+    fun onClickBoard1(view: android.view.View) {
         val button: Button = view as Button
         if (button.text.toString() == "X" || button.text.toString() == "O") return
         button.text = "X"
@@ -59,5 +62,20 @@ class MainActivity : AppCompatActivity() {
     private suspend fun machineStep() {
         val randomStop = Random.nextInt(0, 10) * 1000
         delay(randomStop.toLong())
+    }
+
+    fun onClickBoard2(view: android.view.View) {
+        val button: Button = view as Button
+        if (button.text.toString() == "X" || button.text.toString() == "O") return
+        button.text = "X"
+        listOfViewBoard2.removeAt(listOfViewBoard2.indexOf(button))
+        if (listOfViewBoard2.size == 0) return
+        GlobalScope.launch(Dispatchers.Main) {
+            delay(2000)
+            val button = listOfViewBoard2[(Random.nextInt(0, listOfViewBoard2.size - 1))]
+            withContext(Dispatchers.IO) { machineStep() }
+            button.text = "O"
+            listOfViewBoard2.removeAt(listOfViewBoard2.indexOf(button))
+        }
     }
 }
